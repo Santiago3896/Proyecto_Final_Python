@@ -5,9 +5,15 @@
 {% endblock title_header %}
 
 {% block h1_header %}
-<form action="" method="POST">
-    {% csrf_token %}
-    {{formulario}}
-    <input type="submit" value="Crear">
-    </form>
+Languages
 {% endblock h1_header %}
+{% block main %}
+
+{% comment %} <ul>
+    {% for languages in listado %}
+    <li> {{listado}}</li>
+    {% endfor %}
+</ul> {% endcomment %}
+
+{{listadoL}}
+{% endblock main %}

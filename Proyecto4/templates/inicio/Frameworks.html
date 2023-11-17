@@ -1,13 +1,19 @@
 {% extends "base.html" %}
 
 {% block title_header %} 
-<title>Frameworks</title>
+<title>Framework</title>
 {% endblock title_header %}
 
 {% block h1_header %}
-<form action="" method="POST">
-    {% csrf_token %}
-    {{formulario}}
-    <input type="submit" value="Crear">
-    </form>
+Framework
 {% endblock h1_header %}
+{% block main %}
+
+<ul>
+    {% for framework in listadoF %}
+    <li> {{listadoF}} </li>
+    {% endfor %}
+</ul>
+
+
+{% endblock main %}
