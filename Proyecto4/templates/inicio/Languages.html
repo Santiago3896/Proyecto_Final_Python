@@ -1,7 +1,13 @@
+{% extends "base.html" %}
+
 {% block title_header %} 
 <title>Languages</title>
 {% endblock title_header %}
 
 {% block h1_header %}
-Languages
+<form action="" method="POST">
+    {% csrf_token %}
+    {{formulario}}
+    <input type="submit" value="Crear">
+    </form>
 {% endblock h1_header %}
