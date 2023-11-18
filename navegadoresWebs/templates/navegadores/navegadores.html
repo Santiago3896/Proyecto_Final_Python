@@ -22,7 +22,7 @@ navegadores
 {% if listado_navegadores %}
     {% for navegadores in listado_navegadores %}
     <li>
-        {{navegadores}} 
+        {{navegadores}} <a href={% url "editar" navegadores.id %}>Editar</a> | <a href={% url "eliminar" navegadores.id %}>Eliminar</a> || <a href={% url "detalle" navegadores.id %}>Ver mas...</a>
     </li> 
     {% endfor %} 
 
