@@ -7,4 +7,4 @@ class Navegador(models.Model):
     
 
     def __str__(self):
-        return f"{self.id} - {self.nombre} - {self.version} - {self.fecha_creacion}"
+        return f"{self.nombre}  || {self.fecha_creacion}"
