@@ -1,28 +1,43 @@
 from django.shortcuts import render, redirect
 
-from Proyecto4.forms import CreacionLanguages, CreacionFramework
+from Proyecto4.forms import CreacionLanguagesFormulario, CreacionFrameworkFormulario, BusquedaLanguagesFormulario
 from Proyecto4.models import Language, Framework
 
 # Create your views here.
 
 def Inicio(request):
-    listado_languages = Language.objects.all()
-    return render(request,"inicio/Inicio.html",{"listadoL": listado_languages})
+    
+    return render(request,"inicio/Inicio.html")
 
 def Languages(request):
-    listadoL = Language.objects.all()
-    print(listadoL)
-    return render(request,"inicio/Languages.html",{"listadoL": listadoL})
+    # nombre_buscar = request.GET.get('nombre')
+    
+    # if nombre_buscar:
+    #     listado_de_languages = Language.objects.filter(nombre__icontains= nombre_buscar.lower())
+    # else:
+    #     listado_de_languages = Language.objects.all()
+    form_Busqueda = BusquedaLanguagesFormulario(request.GET)
+    if form_Busqueda.is_valid():
+        nombre_buscar = form_Busqueda.cleaned_data.get("nombre")
+        listado_de_languages = Language.objects.filter(nombre__icontains= nombre_buscar.lower())
+        
+    form_Busqueda = BusquedaLanguagesFormulario()
+    return render(request, "inicio/Languages.html", {"busqueda":form_Busqueda,'languages': listado_de_languages})
+
 
 def Frameworks(request):
-    listado_frameworks = Framework.objects.all()
-    print("pasando")
-    return render(request,"inicio/Frameworks.html",{"listadoF": listado_frameworks})
-
+    nombre_buscar = request.GET.get("nombre")
+    
+    if nombre_buscar:
+        listado_de_frameworks = Framework.objects.filter(nombre__icontains= nombre_buscar.lower())
+    else:
+        listado_de_frameworks = Framework.objects.all()
+    
+    return render(request, "inicio/Frameworks.html", {"frameworks": listado_de_frameworks})
 def Creacion_Languages(request):
     
     if request.method == "POST":
-        formularioLanguages = CreacionLanguages(request.POST)
+        formularioLanguages = CreacionLanguagesFormulario(request.POST)
         if formularioLanguages.is_valid():
             info_limpiaLanguages = formularioLanguages.cleaned_data
             
@@ -37,19 +52,18 @@ def Creacion_Languages(request):
             languages = Language(nombre = nombre , creador = creador , version = version , descripcion = descripcion)
              
             languages.save()
-            print(languages)
             return redirect(Inicio)
         else: 
             print("pasando por aca")
             return render(request,"", {"formularioLanguages": formularioLanguages})
-    formularioL = CreacionLanguages()
+    formularioL = CreacionLanguagesFormulario()
     return render(request,"inicio/CreacionLanguages.html", {"formularioLl": formularioL})       
     
 
 def Creacion_Frameworks(request):
     
     if request.method == "POST":
-        formularioFramework = CreacionFramework(request.POST)
+        formularioFramework = CreacionFrameworkFormulario(request.POST)
         if formularioFramework.is_valid():
             info_limpiaFramework = formularioFramework.cleaned_data
             # AGARRO EL DATO DEL FORM Y LO GUARDO EN VARIABLE
@@ -64,7 +78,7 @@ def Creacion_Frameworks(request):
         else:
             # SI NO ES VALIDO EL FORMULARIO, SE MUESTRA EL ERROR PERO NO ME ESTA FUNCIONANDO- ARREGLAR -
             return render(request, "", {"formularioFramework": formularioFramework}) 
-    formularioF = CreacionFramework()
+    formularioF = CreacionFrameworkFormulario()
     # LE PASO EL FORMULARIO VACIO ABAJO, PORQUE LA PRIMER VISTA VIENE POR GET
     return render(request,"inicio/CreacionFrameworks.html", {"formularioFf": formularioF})
 

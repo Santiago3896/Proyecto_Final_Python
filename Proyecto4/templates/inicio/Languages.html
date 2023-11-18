@@ -7,13 +7,23 @@
 {% block h1_header %}
 Languages
 {% endblock h1_header %}
+
+
 {% block main %}
 
-{% comment %} <ul>
-    {% for languages in listado %}
-    <li> {{listado}}</li>
-    {% endfor %}
-</ul> {% endcomment %}
+<form action="">
+    {{busqueda}}
+    <input type="submit" value="Buscar">
+</form>
 
-{{listadoL}}
+<ul>
+{% if languages %}
+    {% for language in languages %}
+    <li>{{language}}</li> 
+    {% endfor %}
+</ul>
+{% else %}
+<p>No se encontraron Lenguages</p>
+{% endif %}
+
 {% endblock main %}

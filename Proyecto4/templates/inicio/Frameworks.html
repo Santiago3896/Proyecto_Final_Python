@@ -1,19 +1,30 @@
 {% extends "base.html" %}
 
 {% block title_header %} 
-<title>Framework</title>
+<title>Frameworks</title>
 {% endblock title_header %}
 
 {% block h1_header %}
-Framework
+Frameworks
 {% endblock h1_header %}
+
+
 {% block main %}
 
-<ul>
-    {% for framework in listadoF %}
-    <li> {{listadoF}} </li>
-    {% endfor %}
-</ul>
+<form action="">
+    <input type="text" name='nombre'>
+    <input type="submit" value="Buscar">
+</form>
 
+<ul>
+{% if frameworks %}
+    {% for framework in frameworks %}
+    <li>{{framework}}</li> 
+    {% endfor %} 
+
+</ul>
+{% else %}
+<p>No se encontraron Frameworks</p>
+{% endif %}
 
 {% endblock main %}

@@ -6,8 +6,8 @@ class Language(models.Model):
     version = models.IntegerField()
     descripcion = models.TextField()
     
-def __str__(self):
-    return f"{self.id} - {self.nombre} - {self.creador} - {self.version} - {self.descripcion}"
+    def __str__(self):
+        return f"{self.id} - {self.nombre} - {self.creador} - {self.version} - {self.descripcion}"
 
 
 class Framework(models.Model):
@@ -15,6 +15,6 @@ class Framework(models.Model):
     languages = models.CharField(max_length=15)
     descripcion = models.TextField()
 
-def __str__(self):
-    return f"{self.id} - {self.nombre} - {self.languages} - {self.descripcion}"
+    def __str__(self):
+        return f"{self.id} - {self.nombre} - {self.languages} - {self.descripcion}"
 
