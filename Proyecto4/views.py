@@ -132,6 +132,14 @@ def Actualizar_Framework(request,framework_id):
         
     formulario = ActualizarFrameworkFormulario(initial={"nombre" : framework_a_actualizar.nombre,"languages" : framework_a_actualizar.languages,"descripcion" : framework_a_actualizar.descripcion})
     return render(request,"inicio/ActualizarFrameworks.html", {"formulario": formulario})
+
+def Detalle_Language(request, language_id):
+    language = Language.objects.get(id=language_id)
+    return render(request,"inicio/DetalleLanguages.html", {"language": language})
+
+def Detalle_Framework(request, framework_id):
+    framework = Framework.objects.get(id=framework_id)
+    return render(request,"inicio/DetalleFrameworks.html", {"framework": framework})
     
 def About(request):
     

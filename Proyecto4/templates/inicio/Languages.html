@@ -19,7 +19,7 @@ Languages
 <ul>
 {% if languages %}
     {% for language in languages %}
-    <li>{{language}} <a href={% url "ActualizarLanguage" language.id %}>Actualizar</a> | <a href={% url "eliminarLanguage" language.id %}>Eliminar</a>|</li> 
+    <li>{{language}} <a href={% url "ActualizarLanguage" language.id %}>Actualizar</a> | <a href={% url "eliminarLanguage" language.id %}>Eliminar</a>| <a href={% url "DetalleLanguage" language.id%}>Ver mas...</a></li> 
     {% endfor %}
 </ul>
 {% else %}

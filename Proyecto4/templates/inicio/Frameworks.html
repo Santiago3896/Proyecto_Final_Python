@@ -19,7 +19,8 @@ Frameworks
 <ul>
 {% if frameworks %}
     {% for framework in frameworks %}
-    <li>{{framework}} <a href={% url "ActualizarFramework" framework.id %}>Actualizar</a> || <a href={% url "eliminarFramework" framework.id %}>Eliminar</a></li> 
+    <li>{{framework}} <a href={% url "ActualizarFramework" framework.id %}>Actualizar</a> || <a href={% url "eliminarFramework" framework.id %}>Eliminar</a>||
+    <a href={% url "DetalleFramework" framework.id%}>Ver mas...</a></li> 
     {% endfor %} 
 
 </ul>
