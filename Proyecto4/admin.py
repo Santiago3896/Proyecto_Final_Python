@@ -1,3 +1,6 @@
 from django.contrib import admin
 
-# Register your models here.
+from Proyecto4.models import Language,Framework
+
+admin.site.register([Language, Framework])
+# admin.site.register(Framework)

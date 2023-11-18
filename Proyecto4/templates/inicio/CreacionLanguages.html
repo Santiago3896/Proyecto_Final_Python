@@ -5,9 +5,13 @@
 {% endblock title_header %}
 
 {% block h1_header %}
+Crear Language
+{% endblock h1_header %}
+
+{% block main %}
 <form action="" method="POST">
     {% csrf_token %}
     {{formularioLl}}
     <input type="submit" value="Crear">
     </form>
-{% endblock h1_header %}
+{% endblock main %}

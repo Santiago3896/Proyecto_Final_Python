@@ -5,9 +5,13 @@
 {% endblock title_header %}
 
 {% block h1_header %}
+Actualizar Framework
+{% endblock h1_header %}
+
+{% block main %}
 <form action="" method="POST">
     {% csrf_token %}
     {{formulario}}
     <input type="submit" value="Actualizar">
     </form>
-{% endblock h1_header %}
+{% endblock main %}
