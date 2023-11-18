@@ -23,9 +23,16 @@
         <nav class="navbar navbar-light bg-light static-top">
             <div class="container">
                 <a class="navbar-brand" href= {% url "inicio" %}>Inicio</a>
-                <a class="btn btn-primary" href= {% url "languages" %} >Languages</a>
-                <a class="btn btn-primary" href= {% url "frameworks" %} >Frameworks</a>
-                <a class="btn btn-primary" href= {% url "navegadores" %} >Navegadores</a>
+                <a class="navbar-brand" href= {% url "languages" %} >Languages</a>
+                <a class="navbar-brand" href= {% url "frameworks" %} >Frameworks</a>
+                <a class="navbar-brand" href= {% url "navegadores" %} >Navegadores</a>
+                {% if not request.user.is_authenticated %}
+                <a class="btn btn-primary" href={% url "login" %}>Iniciar Secion</a>
+                <a class="btn btn-primary" href={% url "registro" %}>Registrarse</a>
+                {% else %}
+                <a class="navbar-brand" href="#">{{request.user.username}}</a>
+                <a class="btn btn-warning" href={% url "logout" %}>Cerrar Secion</a>
+                {% endif %}
             </div>
         </nav>
         <!-- Masthead-->

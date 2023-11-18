@@ -1,17 +1,18 @@
 {% extends "base.html" %}
 
 {% block title_header %} 
-<title>Actualizar Framework</title>
+<title>Login</title>
 {% endblock title_header %}
 
 {% block h1_header %}
-Actualizar Framework
+Login
 {% endblock h1_header %}
 
 {% block main %}
-<form action="" method="POST">
+
+<form action={% url "login" %} method="POST">
     {% csrf_token %}
-    <table>{{formulario}}</table>
-    <input type="submit" value="Actualizar">
-    </form>
+    {{formulario_login}}
+    <input type="submit" value="Iniciar Sesion">
+</form>
 {% endblock main %}

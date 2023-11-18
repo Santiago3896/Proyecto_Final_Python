@@ -11,7 +11,7 @@ Actualizar Language
 {% block main %}
 <form action="" method="POST">
     {% csrf_token %}
-    {{formulario}}
+    <table>{{formulario}}</table>
     <input type="submit" value="Actualizar">
     </form>
 {% endblock main %}

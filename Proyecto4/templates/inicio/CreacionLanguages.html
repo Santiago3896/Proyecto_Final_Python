@@ -11,7 +11,7 @@ Crear Language
 {% block main %}
 <form action="" method="POST">
     {% csrf_token %}
-    {{formularioLl}}
+    <table>{{formularioLl}}</table>
     <input type="submit" value="Crear">
     </form>
 {% endblock main %}

@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
      "Proyecto4",
      "navegadoresWebs",
+     "cuentas"
 ]
 
 MIDDLEWARE = [
