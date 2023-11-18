@@ -87,6 +87,12 @@ def Eliminar_Language(request,language_id):
     
     return redirect(Languages)
 
+def Eliminar_Framework(request,framework_id):
+    framework_a_elminar = Framework.objects.get(id=framework_id)
+    framework_a_elminar.delete()
+    
+    return redirect(Frameworks)
+
 def Actualizar_Language(request,language_id):
     language_a_actualizar = Language.objects.get(id=language_id)
     
@@ -103,8 +109,29 @@ def Actualizar_Language(request,language_id):
             language_a_actualizar.save()
             return redirect(Languages)
             
-    formulario = ActualizarLanguagesFormulario()
+    formulario = ActualizarLanguagesFormulario(initial={"nombre" : language_a_actualizar.nombre, "creador" : language_a_actualizar.creador,"version" : language_a_actualizar.version, "descripcion" : language_a_actualizar.descripcion })
+    
     return render(request,"inicio/ActualizarLanguages.html", {"formulario":formulario})
+
+def Actualizar_Framework(request,framework_id):
+    framework_a_actualizar = Framework.objects.get(id=framework_id)
+    
+    if request.method == "POST":
+        formulario = ActualizarFrameworkFormulario(request.POST)
+        if formulario.is_valid():
+            actualizado = formulario.cleaned_data
+            
+            framework_a_actualizar.nombre = actualizado.get("nombre")
+            framework_a_actualizar.languages = actualizado.get("languages")
+            framework_a_actualizar.descripcion = actualizado.get("descripcion")
+            
+            framework_a_actualizar.save()
+            return redirect(Frameworks)
+        else:
+            return redirect(request, "inicio/ActualizarFrameworks.html", {"formulario": formulario})
+        
+    formulario = ActualizarFrameworkFormulario(initial={"nombre" : framework_a_actualizar.nombre,"languages" : framework_a_actualizar.languages,"descripcion" : framework_a_actualizar.descripcion})
+    return render(request,"inicio/ActualizarFrameworks.html", {"formulario": formulario})
     
 def About(request):
     
