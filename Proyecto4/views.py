@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 
-from Proyecto4.forms import CreacionLanguagesFormulario, CreacionFrameworkFormulario, BusquedaLanguagesFormulario
+from Proyecto4.forms import CreacionLanguagesFormulario, CreacionFrameworkFormulario, BusquedaLanguagesFormulario, ActualizarLanguagesFormulario,ActualizarFrameworkFormulario
 from Proyecto4.models import Language, Framework
 
 # Create your views here.
@@ -52,9 +52,8 @@ def Creacion_Languages(request):
             languages = Language(nombre = nombre , creador = creador , version = version , descripcion = descripcion)
              
             languages.save()
-            return redirect(Inicio)
+            return redirect(Languages)
         else: 
-            print("pasando por aca")
             return render(request,"", {"formularioLanguages": formularioLanguages})
     formularioL = CreacionLanguagesFormulario()
     return render(request,"inicio/CreacionLanguages.html", {"formularioLl": formularioL})       
@@ -74,7 +73,7 @@ def Creacion_Frameworks(request):
             framework = Framework(nombre = nombre , languages = languages , descripcion = descripcion)
             framework.save()
             # REDIRIGIR A LA VIEW INICIO
-            return redirect(Inicio)
+            return redirect(Frameworks)
         else:
             # SI NO ES VALIDO EL FORMULARIO, SE MUESTRA EL ERROR PERO NO ME ESTA FUNCIONANDO- ARREGLAR -
             return render(request, "", {"formularioFramework": formularioFramework}) 
@@ -82,7 +81,31 @@ def Creacion_Frameworks(request):
     # LE PASO EL FORMULARIO VACIO ABAJO, PORQUE LA PRIMER VISTA VIENE POR GET
     return render(request,"inicio/CreacionFrameworks.html", {"formularioFf": formularioF})
 
+def Eliminar_Language(request,language_id):
+    language_a_elminar = Language.objects.get(id=language_id)
+    language_a_elminar.delete()
+    
+    return redirect(Languages)
 
+def Actualizar_Language(request,language_id):
+    language_a_actualizar = Language.objects.get(id=language_id)
+    
+    if request.method == "POST":
+        formulario = ActualizarLanguagesFormulario(request.POST)
+        if formulario.is_valid():
+            actualizado = formulario.cleaned_data
+            
+            language_a_actualizar.nombre = actualizado.get("nombre")
+            language_a_actualizar.creador = actualizado.get("creador")
+            language_a_actualizar.version = actualizado.get("version")
+            language_a_actualizar.descripcion = actualizado.get("descripcion")
+            
+            language_a_actualizar.save()
+            return redirect(Languages)
+            
+    formulario = ActualizarLanguagesFormulario()
+    return render(request,"inicio/ActualizarLanguages.html", {"formulario":formulario})
+    
 def About(request):
     
     return render(request,"inicio/About.html")
