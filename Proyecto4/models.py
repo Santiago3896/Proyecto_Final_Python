@@ -9,7 +9,6 @@ class Language(models.Model):
     def __str__(self):
         return f"{self.id} - {self.nombre} - {self.creador} - {self.version} - {self.descripcion}"
 
-
 class Framework(models.Model):
     nombre = models.CharField(max_length=10)
     languages = models.CharField(max_length=15)
@@ -17,4 +16,3 @@ class Framework(models.Model):
 
     def __str__(self):
         return f"{self.id} - {self.nombre} - {self.languages} - {self.descripcion}"
-

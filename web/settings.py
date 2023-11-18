@@ -38,7 +38,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-     "Proyecto4"
+     "Proyecto4",
+     "navegadoresWebs",
 ]
 
 MIDDLEWARE = [
