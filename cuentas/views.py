@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
-from django.contrib.auth.forms import AuthenticationForm, UserCreationForm
+from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth import authenticate, login as django_login
-from cuentas.forms import Registration 
+from cuentas.forms import Registration,EditarPerfil
 
 def login(request):
     
@@ -32,3 +32,14 @@ def registro(request):
             return redirect("login")
    
     return render(request,"cuentas/registro.html", {"formulario_registro": formulario})
+
+def editar_Perfil(request):
+    formulario = EditarPerfil(instance=request.user)
+    if request.method == "POST":
+        formulario = EditarPerfil(request.POST, instance=request.user)
+        
+        if formulario.is_valid():
+            formulario.save()
+            return redirect("login")
+        
+    return render(request,"cuentas/editar.html",{"formulario_perfil": formulario})

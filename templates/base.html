@@ -30,7 +30,7 @@
                 <a class="btn btn-primary" href={% url "login" %}>Iniciar Secion</a>
                 <a class="btn btn-primary" href={% url "registro" %}>Registrarse</a>
                 {% else %}
-                <a class="navbar-brand" href="#">{{request.user.username}}</a>
+                <a class="navbar-brand" href={% url "editar" %}>{{request.user.username}}</a>
                 <a class="btn btn-warning" href={% url "logout" %}>Cerrar Secion</a>
                 {% endif %}
             </div>
