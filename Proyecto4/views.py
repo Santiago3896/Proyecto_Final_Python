@@ -1,4 +1,5 @@
 from django.shortcuts import render, redirect
+from django.contrib.auth.decorators import login_required
 
 from Proyecto4.forms import CreacionLanguagesFormulario, CreacionFrameworkFormulario, BusquedaLanguagesFormulario, ActualizarLanguagesFormulario,ActualizarFrameworkFormulario
 from Proyecto4.models import Language, Framework
@@ -34,6 +35,8 @@ def Frameworks(request):
         listado_de_frameworks = Framework.objects.all()
     
     return render(request, "inicio/Frameworks.html", {"frameworks": listado_de_frameworks})
+
+@login_required
 def Creacion_Languages(request):
     
     if request.method == "POST":
@@ -58,7 +61,7 @@ def Creacion_Languages(request):
     formularioL = CreacionLanguagesFormulario()
     return render(request,"inicio/CreacionLanguages.html", {"formularioLl": formularioL})       
     
-
+@login_required
 def Creacion_Frameworks(request):
     
     if request.method == "POST":
@@ -81,18 +84,21 @@ def Creacion_Frameworks(request):
     # LE PASO EL FORMULARIO VACIO ABAJO, PORQUE LA PRIMER VISTA VIENE POR GET
     return render(request,"inicio/CreacionFrameworks.html", {"formularioFf": formularioF})
 
+@login_required
 def Eliminar_Language(request,language_id):
     language_a_elminar = Language.objects.get(id=language_id)
     language_a_elminar.delete()
     
     return redirect(Languages)
 
+@login_required
 def Eliminar_Framework(request,framework_id):
     framework_a_elminar = Framework.objects.get(id=framework_id)
     framework_a_elminar.delete()
     
     return redirect(Frameworks)
 
+@login_required
 def Actualizar_Language(request,language_id):
     language_a_actualizar = Language.objects.get(id=language_id)
     
@@ -113,6 +119,7 @@ def Actualizar_Language(request,language_id):
     
     return render(request,"inicio/ActualizarLanguages.html", {"formulario":formulario})
 
+@login_required
 def Actualizar_Framework(request,framework_id):
     framework_a_actualizar = Framework.objects.get(id=framework_id)
     
