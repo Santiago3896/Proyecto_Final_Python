@@ -26,7 +26,7 @@ def login(request):
             
             return redirect('inicio')
               
-    return render(request, 'cuentas/login.html', {'formulario_de_login': formulario})
+    return render(request, 'cuentas/login.html', {'Flogin': formulario})
 
 def registro(request):
     formulario = MiFormularioDeCreacion()
@@ -39,7 +39,7 @@ def registro(request):
             
             return redirect('login')
             
-    return render(request, 'cuentas/registro.html', {'formulario_de_registro': formulario})
+    return render(request, 'cuentas/registro.html', {'Fregistro': formulario})
 
 def editar_perfil(request):
     
@@ -65,7 +65,7 @@ def editar_perfil(request):
             
             return redirect('editar_perfil')
     
-    return render(request, 'cuentas/editar_perfil.html', {'formulario': formulario})
+    return render(request, 'cuentas/editar_perfil.html', {'Fedit': formulario})
 
 class CambiarPassword(PasswordChangeView):
     template_name = 'cuentas/cambiar_password.html'

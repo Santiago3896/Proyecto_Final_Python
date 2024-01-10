@@ -11,6 +11,7 @@ class MiFormularioDeCreacion(UserCreationForm):
         model = User
         fields = ['username', 'email', 'password1', 'password2']
         help_texts = {key: '' for key in fields}
+        # lo que uso en help_texts es para que no me explique lo que deberia completar en cada campo
     
 class EdicionPerfil(UserChangeForm):
     password = None
