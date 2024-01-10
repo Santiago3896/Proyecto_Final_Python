@@ -18,6 +18,8 @@ class Frameworks(forms.Form):
     nombre = forms.CharField(max_length=10)
     languages = forms.CharField(max_length=15)
     descripcion = forms.CharField(max_length=10)
+    # fecha_creacion = forms.DateField()
+    # imgFramework = forms.ImageField(required=False)
     
 class CreacionFrameworkFormulario(Frameworks):
     ...

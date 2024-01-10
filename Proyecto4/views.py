@@ -66,14 +66,18 @@ def Creacion_Frameworks(request):
     
     if request.method == "POST":
         formularioFramework = CreacionFrameworkFormulario(request.POST)
+        # despues del request.post no iria ", request.FILES"?
         if formularioFramework.is_valid():
             info_limpiaFramework = formularioFramework.cleaned_data
-            # AGARRO EL DATO DEL FORM Y LO GUARDO EN VARIABLE
+            # AGARRO EL DATO DEL FORM Y LO GUARDO EN VARIABLE   
             nombre = info_limpiaFramework.get("nombre")
             languages = info_limpiaFramework.get("languages")
             descripcion = info_limpiaFramework.get("descripcion")
+            # fecha_creacion = info_limpiaFramework.get("fecha_creacion")
+            # imgFramework = info_limpiaFramework.get("imgFramework")
             # DONDE DIGA TAL COSA EN EL MODELO REMPLAZALO POR TAL VARIABLE. SAVE GUARDA EN EL MODELO
             framework = Framework(nombre = nombre , languages = languages , descripcion = descripcion)
+            # agregaria ,fecha_creacion = fecha_creacion, imgFramework = imgFramework
             framework.save()
             # REDIRIGIR A LA VIEW INICIO
             return redirect(Frameworks)
