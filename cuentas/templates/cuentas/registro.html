@@ -1,20 +1,21 @@
 {% extends "base.html" %}
 
-{% block title_header %} 
+{% block title_head %}
 <title>Registro</title>
-{% endblock title_header %}
+{% endblock title_head %}
 
 {% block h1_header %}
-Registro
+Registrate
 {% endblock h1_header %}
 
 {% block main %}
 
-<form action={% url "registro" %} method="POST">
+<form action={% url "registrarse" %} method="POST">
     {% csrf_token %}
     <table>
-        {{formulario_registro}}
+        {{formulario_de_registro}}
     </table>
-    <input type="submit" value="Registrate">
+    <input type="submit" value="Registrarse">
 </form>
+
 {% endblock main %}

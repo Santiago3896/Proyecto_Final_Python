@@ -27,11 +27,25 @@
                 <a class="navbar-brand" href= {% url "frameworks" %} >Frameworks</a>
                 <a class="navbar-brand" href= {% url "navegadores" %} >Navegadores</a>
                 {% if not request.user.is_authenticated %}
-                <a class="btn btn-primary" href={% url "login" %}>Iniciar Secion</a>
-                <a class="btn btn-primary" href={% url "registro" %}>Registrarse</a>
+                <a class="btn btn-primary" href={% url "login" %}>Iniciar Sesion</a>
+                <a class="btn btn-secondary" href={% url "registrarse" %}>Registrarse</a>
                 {% else %}
-                <a class="navbar-brand" href={% url "editar" %}>{{request.user.username}}</a>
-                <a class="btn btn-warning" href={% url "logout" %}>Cerrar Secion</a>
+                <a class="navbar-brand" href={% url "editar_perfil" %}>
+                    {% if request.user.datosextra.avatar %}
+                        <img src={{request.user.datosextra.avatar.url}} alt="avatar" height='40px'>
+                    {% endif %}
+                    {{request.user.username}}
+                </a>
+                {% comment %} <a class="btn btn-warning" href={% url "logout" %}>Cerrar Sesion</a>  {% endcomment %}
+
+                {% comment %} <form action="{% url 'logout' %}" method="post">
+                    {% csrf_token %}
+                    <input type="submit" value="Cerrar Sesión">
+                </form> {% endcomment %}
+                <form action="{% url 'logout' %}" method="post">
+                    {% csrf_token %}
+                    <button type="submit" class="btn btn-warning">Cerrar Sesión</button>
+                </form>
                 {% endif %}
             </div>
         </nav>
