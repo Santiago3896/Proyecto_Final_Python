@@ -45,7 +45,7 @@ def editar_perfil(request):
     
     datos_extra = request.user.datosextra
     
-    formulario = EdicionPerfil(instance=request.user, initial={'biografia': datos_extra.biografia, 'avatar': datos_extra.avatar})
+    formulario = EdicionPerfil(instance=request.user, initial={'biografia': datos_extra.biografia, 'avatar': datos_extra.avatar, 'deporte_favorito': datos_extra.deporte_favorito})
     
     if request.method == 'POST':
         formulario = EdicionPerfil(request.POST, request.FILES, instance=request.user)
@@ -54,11 +54,16 @@ def editar_perfil(request):
             
             nueva_biografia = formulario.cleaned_data.get('biografia')
             nueva_avatar = formulario.cleaned_data.get('avatar')
+            nuevo_deporte_favorito = formulario.cleaned_data.get('deporte_favorito')
             
             if nueva_biografia:
                 datos_extra.biografia = nueva_biografia
             if nueva_avatar:
                 datos_extra.avatar = nueva_avatar
+            if nuevo_deporte_favorito:
+                datos_extra.deporte_favorito = nuevo_deporte_favorito
+                
+                
             
             datos_extra.save()
             formulario.save()
