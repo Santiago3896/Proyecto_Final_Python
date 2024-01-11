@@ -75,3 +75,7 @@ def editar_perfil(request):
 class CambiarPassword(PasswordChangeView):
     template_name = 'cuentas/cambiar_password.html'
     success_url = reverse_lazy('editar_perfil')
+    
+def perfil(request):
+    usuario = request.user
+    return render(request, 'cuentas/perfil.html', {'perfil': usuario})

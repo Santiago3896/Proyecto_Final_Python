@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+
+{% block title_header %} 
+<title>Perfil</title>
+{% endblock title_header %}
+
+{% block h1_header %}
+Bienvenido a tu perfil!
+{% endblock h1_header %}
+
+
+{% block main %}
+
+<a href={% url "editar_perfil" %}>Editar Perfil</a>
+
+<ul>
+    <li>Nombre: {{perfil.username}}</li>
+    <li>Email: {{perfil.email}}</li>
+    <li>Avatar: {{perfil.datosextra.avatar}}</li>
+    <li>Biografia: {{perfil.datosextra.biografia}}</li>
+</ul>
+
+{% endblock main %}
