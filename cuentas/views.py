@@ -68,13 +68,13 @@ def editar_perfil(request):
             datos_extra.save()
             formulario.save()
             
-            return redirect('editar_perfil')
+            return redirect('perfil')
     
     return render(request, 'cuentas/editar_perfil.html', {'Fedit': formulario})
 
 class CambiarPassword(PasswordChangeView):
     template_name = 'cuentas/cambiar_password.html'
-    success_url = reverse_lazy('editar_perfil')
+    success_url = reverse_lazy('perfil')
     
 def perfil(request):
     usuario = request.user

@@ -33,6 +33,8 @@ def Frameworks(request):
         listado_de_frameworks = Framework.objects.filter(nombre__icontains= nombre_buscar.lower())
     else:
         listado_de_frameworks = Framework.objects.all()
+        
+    # print("MIRAME_ESTOY_PASANDO_POR_ACA")
     
     return render(request, "inicio/Frameworks.html", {"frameworks": listado_de_frameworks})
 
@@ -65,25 +67,28 @@ def Creacion_Languages(request):
 def Creacion_Frameworks(request):
     
     if request.method == "POST":
-        formularioFramework = CreacionFrameworkFormulario(request.POST)
+        formularioFramework = CreacionFrameworkFormulario(request.POST, request.FILES)
         # despues del request.post no iria ", request.FILES"?
+        print("PASANDO POR ACA")
         if formularioFramework.is_valid():
             info_limpiaFramework = formularioFramework.cleaned_data
             # AGARRO EL DATO DEL FORM Y LO GUARDO EN VARIABLE   
             nombre = info_limpiaFramework.get("nombre")
             languages = info_limpiaFramework.get("languages")
             descripcion = info_limpiaFramework.get("descripcion")
-            # fecha_creacion = info_limpiaFramework.get("fecha_creacion")
-            # imgFramework = info_limpiaFramework.get("imgFramework")
+            fecha_creacion = info_limpiaFramework.get("fecha_creacion")
+            imgFramework = info_limpiaFramework.get("imgFramework")
             # DONDE DIGA TAL COSA EN EL MODELO REMPLAZALO POR TAL VARIABLE. SAVE GUARDA EN EL MODELO
-            framework = Framework(nombre = nombre , languages = languages , descripcion = descripcion)
-            # agregaria ,fecha_creacion = fecha_creacion, imgFramework = imgFramework
+            framework = Framework(nombre = nombre , languages = languages , descripcion = descripcion, fecha_creacion = fecha_creacion, imgFramework = imgFramework)
+            # agregaria 
             framework.save()
             # REDIRIGIR A LA VIEW INICIO
             return redirect(Frameworks)
         else:
             # SI NO ES VALIDO EL FORMULARIO, SE MUESTRA EL ERROR PERO NO ME ESTA FUNCIONANDO- ARREGLAR -
-            return render(request, "", {"formularioFramework": formularioFramework}) 
+            # return render(request, "", {"formularioFramework": formularioFramework}) 
+            return render(request, "inicio/inicio.html", {"formularioFramework": formularioFramework})
+
     formularioF = CreacionFrameworkFormulario()
     # LE PASO EL FORMULARIO VACIO ABAJO, PORQUE LA PRIMER VISTA VIENE POR GET
     return render(request,"inicio/CreacionFrameworks.html", {"formularioFf": formularioF})

@@ -9,7 +9,8 @@ Crear Framework
 {% endblock h1_header %}
 
 {% block main %}
-<form action="" method="POST">
+<!-- <form action="" method="POST" enctype='multipart/form-data'> -->
+<form action="{% url 'CreacionFrameworks' %}" method="POST" enctype="multipart/form-data">    
     {% csrf_token %}
     <table>{{formularioFf}}</table>
     <input type="submit" value="Crear">

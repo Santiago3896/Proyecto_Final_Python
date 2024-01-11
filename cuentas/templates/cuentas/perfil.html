@@ -16,8 +16,12 @@ Bienvenido a tu perfil!
 <ul>
     <li>Nombre: {{perfil.username}}</li>
     <li>Email: {{perfil.email}}</li>
-    <li> <img src={{request.user.datosextra.avatar.url}} alt="avatar" height='80px'></li>
-    <li>Biografia: {{perfil.datosextra.biografia}}</li>
+    {% if  perfil.datosextra.avatar %}
+        <li> <img src={{request.user.datosextra.avatar.url}} alt="avatar" height='80px'></li>
+    {% endif %}
+    {% if  perfil.datosextra.biografia %}
+        <li>Biografia: {{perfil.datosextra.biografia}}</li>
+    {% endif %}
 </ul>
 
 {% endblock main %}
