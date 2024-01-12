@@ -14,9 +14,18 @@ Detalle {{framework.nombre}}
 <ul>
     <li>Nombre: {{framework.nombre}}</li>
     <li>Language: {{framework.languages}}</li>
+    {%if framework.descripcion%}
     <li>Descripcion: {{framework.descripcion}}</li>
-    <li> <img src={{request.Framework.imgFramework.url}} alt="imgFramework" height='80px'></li>
+    {% endif %}
+    {%if framework.fecha_creacion%}
+    <li>Creacion: {{framework.fecha_creacion}}</li>
+    {% endif %}
+    {% if  framework.imgFramework %}
+    <img src={{framework.imgFramework.url}} alt="imgFramework" height='80px'>
     <!-- <li> <img src={{request.user.datosextra.avatar.url}} alt="avatar" height='80px'></li> -->
+    {% endif %}
 </ul>
 
 {% endblock main %}
+
+<!-- ME FALTA SOLO PODER RENDERIZAR LA IMAGEN Y ESTAMOS CASI -->

@@ -16,11 +16,11 @@ Bienvenido a tu perfil!
 <ul>
     <li>Nombre: {{perfil.username}}</li>
     <li>Email: {{perfil.email}}</li>
-    {% if  perfil.datosextra.avatar %}
-        <li> <img src={{request.user.datosextra.avatar.url}} alt="avatar" height='80px'></li>
-    {% endif %}
     {% if  perfil.datosextra.biografia %}
         <li>Biografia: {{perfil.datosextra.biografia}}</li>
+    {% endif %}
+    {% if  perfil.datosextra.avatar %}
+         <img src={{request.user.datosextra.avatar.url}} alt="avatar" height='80px'>
     {% endif %}
 </ul>
 
