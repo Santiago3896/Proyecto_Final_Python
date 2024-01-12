@@ -15,7 +15,7 @@ Detalle {{framework.nombre}}
     <li>Nombre: {{framework.nombre}}</li>
     <li>Language: {{framework.languages}}</li>
     {%if framework.descripcion%}
-    <li>Descripcion: {{framework.descripcion}}</li>
+    <li>Descripcion: {{framework.descripcion | safe}}</li>
     {% endif %}
     {%if framework.fecha_creacion%}
     <li>Creacion: {{framework.fecha_creacion}}</li>
