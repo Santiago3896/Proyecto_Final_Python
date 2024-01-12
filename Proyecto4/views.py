@@ -133,13 +133,15 @@ def Actualizar_Framework(request,framework_id):
     framework_a_actualizar = Framework.objects.get(id=framework_id)
     
     if request.method == "POST":
-        formulario = ActualizarFrameworkFormulario(request.POST)
+        formulario = ActualizarFrameworkFormulario(request.POST, request.FILES)
         if formulario.is_valid():
             actualizado = formulario.cleaned_data
             
             framework_a_actualizar.nombre = actualizado.get("nombre")
             framework_a_actualizar.languages = actualizado.get("languages")
             framework_a_actualizar.descripcion = actualizado.get("descripcion")
+            framework_a_actualizar.fecha_creacion = actualizado.get("fecha_creacion")
+            framework_a_actualizar.imgFramework = actualizado.get("imgFramework")
             
             framework_a_actualizar.save()
             return redirect(Frameworks)

@@ -1,4 +1,5 @@
 from django import forms
+from ckeditor.fields import RichTextFormField
 
 class Languages(forms.Form):
     nombre = forms.CharField(max_length=10)
@@ -17,7 +18,7 @@ class ActualizarLanguagesFormulario(Languages):
 class Frameworks(forms.Form):
     nombre = forms.CharField(max_length=10)
     languages = forms.CharField(max_length=15)
-    descripcion = forms.CharField(max_length=10)
+    descripcion = RichTextFormField()
     fecha_creacion = forms.DateField()
     imgFramework = forms.ImageField(required=False)
     

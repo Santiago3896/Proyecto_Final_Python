@@ -9,9 +9,12 @@ Actualizar Framework
 {% endblock h1_header %}
 
 {% block main %}
-<form action="" method="POST">
+<form action="" method="POST" enctype="multipart/form-data">
     {% csrf_token %}
-    <table>{{formulario}}</table>
+    <table>
+        {{formulario.media}}
+        {{formulario}}
+    </table>
     <input type="submit" value="Actualizar">
     </form>
 {% endblock main %}

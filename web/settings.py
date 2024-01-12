@@ -42,6 +42,7 @@ INSTALLED_APPS = [
      "Proyecto4",
      "navegadoresWebs",
      "cuentas",
+     "ckeditor"
 ]
 
 MIDDLEWARE = [

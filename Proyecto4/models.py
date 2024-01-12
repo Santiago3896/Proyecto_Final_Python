@@ -1,4 +1,5 @@
 from django.db import models
+from ckeditor.fields import RichTextField
 
 class Language(models.Model):
     nombre = models.CharField(max_length=10)
@@ -13,7 +14,7 @@ class Language(models.Model):
 class Framework(models.Model):
     nombre = models.CharField(max_length=10)
     languages = models.CharField(max_length=15)
-    descripcion = models.TextField()
+    descripcion = RichTextField()
     fecha_creacion = models.DateField()
     imgFramework = models.ImageField(upload_to='framework', null=True, blank=True)
 
